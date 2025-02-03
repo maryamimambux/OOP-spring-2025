@@ -1,6 +1,11 @@
 # LAB 03
 ## Object Oriented Programming
-### Fundamentals of Object-Oriented Programming, Classes, Objects, Access Modifiers, Setter and Getters and Header Files
+1. Fundamentals of Object-Oriented Programming
+2. Classes
+3. Objects
+4. Access Modifiers
+5. Setter and Getters
+6. Header Files
 
 *Setter and Getter Functions*
 
