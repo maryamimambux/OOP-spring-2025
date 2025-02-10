@@ -1,70 +1,99 @@
 #include <iostream>
 using namespace std;
 
-class Student
-{
-    string name;
-    string rollNo;
-    int age;
-    string course;
+class Markerpens {
 
-public:
-    string universityName = "FAST - NUCES";
+ public:
+ string brand;
+ string color;
+ int inkLevel;
+ bool refillability;
+ 
+ Markerpens () {}
+ 
+ Markerpens (string brand, string color, int inkLevel, bool refillability) {
+ this->brand = brand;
+ this->color = color;
+ this->inkLevel = inkLevel;
+ this->refillability = refillability;
+ }
 
-    // Setters
-    void setValue(string name, string rollNo, int age, string course)
-    {
-        this->name = name;
-        this->rollNo = rollNo;
-        this->age = age;
-        this->course = course;
+
+ void write(int amount) {
+        if (inkLevel >= amount) {
+            inkLevel -= amount;
+            cout << "Wrote with " << color << " pen. Remaining ink level: " << inkLevel << "%" << endl;
+        } else {
+            cout << "Not enough ink! Please refill the pen." << endl;
+        }
     }
+    
+    void refill () {
+     if (refillability) {
+     if (inkLevel < 100) {
+     inkLevel = 100;
+ }
+ else {
+ cout << "The pen is already filled!" << endl;
+ }
+ }
+ else {
+ cout << "The pen is not refillable!" << endl;
+ }
+ }
 
-    // Getters
-    string getName()
-    {
-        return name;
-    }
+ void check_status () {
+ cout << "\nPen Brand: " << brand << endl;
+ cout << "Pen Color: " << color << endl;
+ cout << "Pen Ink level: " << inkLevel << endl;
+ cout << "Refillable: " << (refillability?"Yes.": "No.") << endl;
 
-    string getRollno()
-    {
-        return rollNo;
-    }
-
-    int getage()
-    {
-        return age;
-    }
-
-    string getcourse()
-    {
-        return course;
-    }
+ }
+ 
+ void penDetails (Markerpens &pen) {
+ 	cout << "Brand: ";
+ 	getline (cin, pen.brand);
+ 	cout << "Color: ";
+ 	getline (cin, pen.color);
+ 	cout << "Ink Level: ";
+ 	cin >> pen.inkLevel;
+ 	cout << "Refillability (0 or 1): ";
+ 	cin >> pen.refillability;
+ }
+ 
 };
 
-int main()
-{
 
-    Student s1;
+int main() {
 
-    s1.setValue("Maryam", "24K-3011", 18, "Object-Oriented-Programming");
-    cout << endl;
-    cout << "Name: " << s1.getName() << endl;
-    cout << "Roll No: " << s1.getRollno() << endl;
-    cout << "Age: " << s1.getage() << endl;
-    cout << "Course: " << s1.getcourse() << endl;
-    cout << "University: " << s1.universityName << endl;
+ int amount;	
+ Markerpens pen1;
+ cout << "Enter pen details: \n" << endl;
+ pen1.penDetails(pen1); 
+ 
+ 
+ pen1.check_status();
+ cout << endl;
 
-    Student s2;
+ cout << "Enter amount of ink level used: ";
+ cin >> amount;
+ pen1.write(amount);
+ cout << endl;
 
-    s2.setValue("Haleema", "24K-3022", 17, "Programming Fundamental");
-    cout << "____________________________________________" << endl;
-    cout << endl;
-    cout << "Name: " << s2.getName() << endl;
-    cout << "Roll No: " << s2.getRollno() << endl;
-    cout << "Age: " << s2.getage() << endl;
-    cout << "Course: " << s2.getcourse() << endl;
-    cout << "University: " << s2.universityName << endl;
+ // Checking status after writing
+ pen1.check_status();
+ cout << endl;
 
-    return 0;
+ // Refilling the marker
+ pen1.refill();
+ cout << endl;
+
+ // Checking status after refilling
+ pen1.check_status();
+ cout << endl;
+
+ pen1.refill();
+ cout << endl;
+
+ return 0;
 }
